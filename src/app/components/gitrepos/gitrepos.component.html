@@ -1,22 +1,32 @@
 <!-- main app container -->
-<div class="jumbotron">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6 offset-md-3">
-        <h3>Github User Name</h3>
-        <form [formGroup]="githubForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label>Github User Name</label>
-            <input type="text" formControlName="githubUserName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.githubUserName.errors }" />
-            <div *ngIf="submitted && f.githubUserName.errors" class="invalid-feedback">
-              <div *ngIf="f.githubUserName.errors.required">Github Username is Required</div>
-            </div>
+<div>
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h3>Github User Name</h3>
+      <form [formGroup]="githubForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <label>Github User Name</label>
+          <input type="text" formControlName="githubUserName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.githubUserName.errors }" />
+          <div *ngIf="submitted && f.githubUserName.errors" class="invalid-feedback">
+            <div *ngIf="f.githubUserName.errors.required">Github Username is Required</div>
           </div>
-          <div class="form-group">
-            <button class="btn btn-primary">Go</button>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary">Go</button>
+        </div>
+      </form>
     </div>
+  </div>
+  <div *ngIf="submitted">
+    <table class="table-bordered">
+      <thead>
+      <th scope="col">Repo Name</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let item of repoNames | keyvalue">
+        <a href="#">{{item.value.name}}</a>
+      </tr>
+      </tbody>
+    </table>
   </div>
 </div>

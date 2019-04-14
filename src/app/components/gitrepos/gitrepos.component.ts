@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {BackendApiService} from '../../services/backend-api.service';
 
 @Component({
   selector: 'app-gitrepos',
@@ -10,8 +11,10 @@ export class GitreposComponent implements OnInit {
 
   githubForm: FormGroup;
   submitted = false;
+  private userName: any;
+  private repoNames = [];
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private backendService: BackendApiService) { }
 
   ngOnInit() {
     this.githubForm = this.formBuilder.group({
@@ -27,8 +30,14 @@ export class GitreposComponent implements OnInit {
     if (this.githubForm.invalid) {
       return ;
     }
+    this.userName = this.githubForm.value;
 
-    console.log(this.githubForm.value);
+    this.backendService.getAll(this.userName)
+      .subscribe(res => {
+        this.repoNames = res;
+      }, error => {
+        console.log(error);
+      });
   }
 
 }

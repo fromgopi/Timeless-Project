@@ -16,6 +16,7 @@ export class BackendApiService {
 
 
     const headers = new HttpHeaders({
+      'Authorization': 'Bearer 6f1bc33bfd01155f3e9f4fc0908001afcf3c9fa9'
     });
 
     return this.http.get(this.baseUrl + '/' + username['githubUserName'] + '/repos', {headers: headers});

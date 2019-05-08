@@ -7,19 +7,23 @@ import {HttpClientModule} from '@angular/common/http';
 import { GitreposComponent } from './components/gitrepos/gitrepos.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { TableComponent } from './components/table/table.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import { ModalsComponent } from './components/modals/modals.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GitreposComponent,
-    TableComponent
+    TableComponent,
+    ModalsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModal
   ],
   providers: [],
   bootstrap: [AppComponent]
